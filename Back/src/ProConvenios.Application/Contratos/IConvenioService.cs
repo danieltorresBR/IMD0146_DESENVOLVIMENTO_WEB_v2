@@ -12,5 +12,11 @@ namespace ProConvenios.Application.Contratos
 
         Task<Convenio[]> GetAllConveniosAsync();
         Task<Convenio> GetConvenioByIdAsync(int ConvenioId);
+        
+        // Task<Convenio> UpdateConvenio(int id, Convenio model);
+        // Task<bool> DeleteConvenio(int id);
+
+        // Task<Convenio[]> GetAllConveniosAsync();
+        // Task<Convenio> GetConvenioByIdAsync(int id);
     }
 }

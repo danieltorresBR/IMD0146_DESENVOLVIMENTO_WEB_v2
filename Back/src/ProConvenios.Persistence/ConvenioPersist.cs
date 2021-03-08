@@ -33,11 +33,16 @@ namespace ProConvenios.Persistence
 
         //     return await query.ToArrayAsync();
         // }
-        public async Task<Convenio> GetConvenioByIdAsync(int ConvenioId)
+        // public async Task<Convenio> GetConvenioByIdAsync(int ConvenioId)
+        // {
+        //     IQueryable<Convenio> query = _context.Convenios;
+
+        //     query = query.OrderBy(c => c.Id).Where(c => c.Id == ConvenioId);
+        public async Task<Convenio> GetConvenioByIdAsync(int Id)
         {
             IQueryable<Convenio> query = _context.Convenios;
 
-            query = query.OrderBy(c => c.Id).Where(c => c.Id == ConvenioId);
+            query = query.OrderBy(c => c.Id).Where(c => c.Id == Id);
 
             return await query.FirstOrDefaultAsync();
         }

@@ -7,35 +7,47 @@
     <input type="text" class="form-control mr-2" placeholder="buscar" [(ngModel)]="filtroLista">
   </div>
 </div>
+<div>
+  <a class="d-flex btn btn-outline-primary" routerLink="/eventos/detalhe">
+    <i class="fa fa-plus-circle my-1"></i>
+    <b class="ml-1 d-none d-sm-block">Novo</b>
+  </a>
+</div>
 <!-- <h3>Filtro: {{filtroLista}} </h3> -->
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr class="text-center">
-      <th>#</th>
-      <th>Data de Início</th>
+      <th class="d-none d-md-table-cell">#</th>
+      <th class="d-none d-md-table-cell">Data de Início</th>
       <th>Data de Finalização</th>
-      <th>Link Redmine</th>
+      <th class="d-none d-md-table-cell">Link Redmine</th>
       <th>Nº do Processo TCE</th>
       <th>Objeto de Acordo</th>
-      <th>Telefone</th>
-      <th>E-mail</th>
+      <th class="d-none d-md-table-cell">Telefone</th>
+      <th class="d-none d-md-table-cell">E-mail</th>
       <th>Opções</th>
     </tr>
   </thead>
   <tbody *ngIf="convenios && convenios.length">
     <tr *ngFor="let convenio of conveniosFiltrados">
-      <td class="text-center">{{convenio.Id}}</td>
-      <td class="text-center">{{convenio.dtInicio}}</td>
+      <td class="text-center d-none d-md-table-cell">{{convenio.id}}</td>
+      <td class="text-center d-none d-md-table-cell">{{convenio.dtInicio}}</td>
       <td class="text-center">{{convenio.dtFim}}</td>
-      <td>{{convenio.linkRedmine}}</td>
+      <td class="d-none d-md-table-cell">{{convenio.linkRedmine}}</td>
       <td class="text-center">{{convenio.processoTCE}}</td>
       <td>{{convenio.objetoAcordo}}</td>
-      <td>{{convenio.telefone}}</td>
-      <td>{{convenio.email}}</td>
+      <td class="d-none d-md-table-cell">{{convenio.telefone}}</td>
+      <td class="d-none d-md-table-cell">{{convenio.email}}</td>
 
       <td>
-        <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
-        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+        <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Editar">
+          <i class="fa fa-edit"></i>
+
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)="openModal(template)">
+          <i class="fa fa-trash"></i>
+
+        </button>
       </td>
     </tr>
   </tbody>
@@ -48,6 +60,14 @@
   </tfoot>
 </table>
 
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que quer deletar esse convenio?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>
 
 
 

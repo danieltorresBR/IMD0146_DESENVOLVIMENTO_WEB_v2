@@ -1,46 +1,66 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { Convenio } from '../models/Convenio';
+import { ConvenioService } from '../services/convenio.service';
 
 @Component({
   selector: 'app-convenios',
   templateUrl: './convenios.component.html',
-  styleUrls: ['./convenios.component.scss']
+  styleUrls: ['./convenios.component.scss'],
+  //providers: [ConvenioService]
 })
 export class ConveniosComponent implements OnInit {
+  modalRef!: BsModalRef;
+  public convenios: Convenio[] = [];
+  public conveniosFiltrados: Convenio[] = [];
+  private filtroListagem = '';
 
-  public convenios: any = [];
-  public conveniosFiltrados: any = [];
-  private _filtroLista: string = '';
-
-  public get filtroLista (){
-    return this._filtroLista;
+  public get filtroLista(): string {
+    return this.filtroListagem;
   }
 
-  public set filtroLista (value: string) {
-    this._filtroLista = value;
+  public set filtroLista(value: string) {
+    this.filtroListagem = value;
     this.conveniosFiltrados = this.filtroLista ? this.filtrarConvenios(this.filtroLista) : this.convenios;
   }
 
-  filtrarConvenios(filtrarPor: string): any {
+  public filtrarConvenios(filtrarPor: string): Convenio[] {
     filtrarPor = filtrarPor;
     return this.convenios.filter(
       convenio => convenio.processoTCE.indexOf(filtrarPor) !== -1
     );
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private convenioService: ConvenioService,
+              private modalService: BsModalService,
+              private toastr: ToastrService
+              ) { }
 
   ngOnInit(): void {
     this.getConvenios();
   }
 
   public getConvenios(): void {
-    this.http.get('https://localhost:5001/api/Convenios').subscribe(
-      response => {
-        this.convenios = response;
+    this.convenioService.getConvenios().subscribe({
+      next: (convenios: Convenio[]) => {
+        this.convenios = convenios;
         this.conveniosFiltrados = this.convenios;
       },
-      error => console.log(error)
-    );
+      error: (error: any) => console.log(error)
+      });
+  }
+
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  confirm(): void {
+    this.modalRef.hide();
+    this.toastr.success('O Convenio foi deletado com Sucesso.', 'Deletado!');
+  }
+
+  decline(): void {
+    this.modalRef.hide();
   }
 }
