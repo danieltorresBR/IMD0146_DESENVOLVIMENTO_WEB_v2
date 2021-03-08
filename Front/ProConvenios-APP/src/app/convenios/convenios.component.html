@@ -10,24 +10,29 @@
 <!-- <h3>Filtro: {{filtroLista}} </h3> -->
 <table class="table table-striped">
   <thead class="thead-dark">
-    <tr>
+    <tr class="text-center">
       <th>#</th>
       <th>Data de Início</th>
       <th>Data de Finalização</th>
       <th>Link Redmine</th>
       <th>Nº do Processo TCE</th>
       <th>Objeto de Acordo</th>
+      <th>Telefone</th>
+      <th>E-mail</th>
       <th>Opções</th>
     </tr>
   </thead>
   <tbody *ngIf="convenios && convenios.length">
     <tr *ngFor="let convenio of conveniosFiltrados">
-      <td>{{convenio.convenioId}}</td>
-      <td>{{convenio.dtInicio}}</td>
-      <td>{{convenio.dtFim}}</td>
+      <td class="text-center">{{convenio.Id}}</td>
+      <td class="text-center">{{convenio.dtInicio}}</td>
+      <td class="text-center">{{convenio.dtFim}}</td>
       <td>{{convenio.linkRedmine}}</td>
-      <td>{{convenio.processoTCE}}</td>
+      <td class="text-center">{{convenio.processoTCE}}</td>
       <td>{{convenio.objetoAcordo}}</td>
+      <td>{{convenio.telefone}}</td>
+      <td>{{convenio.email}}</td>
+
       <td>
         <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
         <button type="button" class="btn btn-danger btn-sm">Excluir</button>

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ProConvenios.API.Data;
-using ProConvenios.API.Models;
+using ProConvenios.Persistence;
+using ProConvenios.Domain;
 
 namespace ProConvenios.API.Controllers
 {
@@ -13,11 +13,11 @@ namespace ProConvenios.API.Controllers
     [Route("api/[controller]")]
     public class ConveniosController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly ProConveniosContext _context;
 
-        public ConveniosController(DataContext context)
+        public ConveniosController(ProConveniosContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         [HttpGet]
@@ -29,7 +29,7 @@ namespace ProConvenios.API.Controllers
         [HttpGet("{id}")]
         public Convenio GetById(int id)
         {
-            return _context.Convenios.FirstOrDefault(convenio => convenio.ConvenioId == id);
+            return _context.Convenios.FirstOrDefault(convenio => convenio.Id == id);
         }
 
         [HttpPost]

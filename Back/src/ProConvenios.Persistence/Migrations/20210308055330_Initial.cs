@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ProConvenios.API.Data.Migrations
+namespace ProConvenios.Persistence.Migrations
 {
     public partial class Initial : Migration
     {
@@ -10,17 +10,19 @@ namespace ProConvenios.API.Data.Migrations
                 name: "Convenios",
                 columns: table => new
                 {
-                    ConvenioId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     DtInicio = table.Column<string>(type: "TEXT", nullable: true),
                     DtFim = table.Column<string>(type: "TEXT", nullable: true),
                     ProcessoTCE = table.Column<string>(type: "TEXT", nullable: true),
                     LinkRedmine = table.Column<string>(type: "TEXT", nullable: true),
-                    ObjetoAcordo = table.Column<string>(type: "TEXT", nullable: true)
+                    ObjetoAcordo = table.Column<string>(type: "TEXT", nullable: true),
+                    Telefone = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Convenios", x => x.ConvenioId);
+                    table.PrimaryKey("PK_Convenios", x => x.Id);
                 });
         }
 
