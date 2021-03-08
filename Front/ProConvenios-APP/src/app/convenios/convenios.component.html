@@ -24,7 +24,7 @@
   </thead>
   <tbody *ngIf="convenios && convenios.length">
     <tr *ngFor="let convenio of conveniosFiltrados">
-      <td class="text-center">{{convenio.Id}}</td>
+      <td class="text-center">{{convenio.id}}</td>
       <td class="text-center">{{convenio.dtInicio}}</td>
       <td class="text-center">{{convenio.dtFim}}</td>
       <td>{{convenio.linkRedmine}}</td>
@@ -34,8 +34,12 @@
       <td>{{convenio.email}}</td>
 
       <td>
-        <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
-        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+        <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Editar">
+          <i class="'fa fa-edit"></i>
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir">
+          <i class="'fa fa-trash"></i>
+        </button>
       </td>
     </tr>
   </tbody>

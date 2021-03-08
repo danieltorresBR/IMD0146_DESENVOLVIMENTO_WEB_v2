@@ -15,7 +15,6 @@ using Microsoft.OpenApi.Models;
 using ProConvenios.Application;
 using ProConvenios.Application.Contratos;
 using ProConvenios.Persistence;
-using ProConvenios.Persistence.Contexto;
 using ProConvenios.Persistence.Contratos;
 
 namespace ProConvenios.API

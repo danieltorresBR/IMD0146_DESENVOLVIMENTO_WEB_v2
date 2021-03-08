@@ -8,7 +8,7 @@ namespace ProConvenios.Persistence.Contratos
         //CONVENIOS
         //Task<Convenio[]> GetAllConvenioBydtInicioAsync(string dtInicio);
         Task<Convenio[]> GetAllConveniosAsync();
-        Task<Convenio> GetConvenioByIdAsync(int convenioId);
+        Task<Convenio> GetConvenioByIdAsync(int id);
         
     }
 }

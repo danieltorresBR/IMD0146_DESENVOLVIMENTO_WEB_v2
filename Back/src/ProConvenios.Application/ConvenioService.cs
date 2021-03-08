@@ -32,11 +32,11 @@ namespace ProConvenios.Application
             }
         }
 
-        public async Task<bool> DeleteConvenio(int convenioId)
+        public async Task<bool> DeleteConvenio(int id)
         {
             try
             {
-                var convenio = await _convenioPersist.GetConvenioByIdAsync(convenioId);
+                var convenio = await _convenioPersist.GetConvenioByIdAsync(id);
                 if (convenio == null) throw new Exception("Convenio para delete não encontrado");
 
                 _geralPersist.Delete<Convenio>(convenio);
@@ -67,11 +67,11 @@ namespace ProConvenios.Application
             }
         }
 
-        public async Task<Convenio> GetConvenioByIdAsync(int convenioId)
+        public async Task<Convenio> GetConvenioByIdAsync(int id)
         {
             try
             {
-                var convenio = await _convenioPersist.GetConvenioByIdAsync(convenioId);
+                var convenio = await _convenioPersist.GetConvenioByIdAsync(id);
                 if (convenio == null)
                 {
                     return null;
@@ -85,18 +85,18 @@ namespace ProConvenios.Application
             }
         }
 
-        public async Task<Convenio> UpdateConvenio(int convenioId, Convenio model)
+        public async Task<Convenio> UpdateConvenio(int id, Convenio model)
         {
             try
             {
-                var convenio = await _convenioPersist.GetConvenioByIdAsync(convenioId);
+                var convenio = await _convenioPersist.GetConvenioByIdAsync(id);
                 if (convenio == null) return null;
 
-                model.Id = convenio.Id;
+                model.id = convenio.id;
 
                 _geralPersist.Update(model);
                 if (await _geralPersist.SaveChangesAsync()) {
-                    return await _convenioPersist.GetConvenioByIdAsync(model.Id);
+                    return await _convenioPersist.GetConvenioByIdAsync(model.id);
                 }
                 return null;
             }

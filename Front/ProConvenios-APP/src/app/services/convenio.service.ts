@@ -4,18 +4,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable(
-// { providedIn: 'root'}
+  // { providedIn: 'root'}
 )
 export class ConvenioService {
-  baseURL = 'https://localhost:5001/api/convenios';
+  baseURL = 'https://localhost:5001/api/Convenios';
 
   constructor(private http: HttpClient) { }
 
-  public getEventos(): Observable<Convenio[]> {
+  public getConvenios(): Observable<Convenio[]> {
     return this.http.get<Convenio[]>(this.baseURL);
   }
 
-  public getEventoById(id: number): Observable<Convenio> {
+  public getConveiosById(id: number): Observable<Convenio> {
     return this.http.get<Convenio>(`${this.baseURL}/${id}`);
   }
 }

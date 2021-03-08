@@ -2,6 +2,8 @@ namespace ProConvenios.Domain
 {
     public class Convenio
     {
+        public int id;
+
         public int Id { get; set; }
         public string DtInicio { get; set; }
         public string DtFim { get; set; }
