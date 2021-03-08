@@ -1,8 +1,50 @@
-<h1>Convenios Component</h1>
+<h2>Convênios</h2>
+<hr>
 
-<div *ngFor="let convenio of convenios">
-  <p><b>Nº Processo TCE: </b>{{convenio.processoTCE}}</p>
-  <p><b>Objeto Acordo: </b>{{convenio.objetoAcordo}}</p>
-  <hr>
+<div action="" class="form-inline">
+  <div class="form-group mb-2">
+    <label class="mr-2">Filtro: </label>
+    <input type="text" class="form-control mr-2" placeholder="buscar" [(ngModel)]="filtroLista">
+  </div>
 </div>
+<!-- <h3>Filtro: {{filtroLista}} </h3> -->
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Data de Início</th>
+      <th>Data de Finalização</th>
+      <th>Nº do Processo TCE</th>
+      <th>Objeto de Acordo</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="convenios && convenios.length">
+    <tr *ngFor="let convenio of conveniosFiltrados">
+      <td>{{convenio.convenioId}}</td>
+      <td>{{convenio.dtInicio}}</td>
+      <td>{{convenio.dtFim}}</td>
+      <td>{{convenio.processoTCE}}</td>
+      <td>{{convenio.linkRedmine}}</td>
+      <td>{{convenio.objetoAcordo}}</td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
+        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!convenios.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>Nenhum convênio encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+
+
+
+
+
 

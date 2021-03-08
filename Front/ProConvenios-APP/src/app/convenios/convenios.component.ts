@@ -8,7 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConveniosComponent implements OnInit {
 
-  public convenios: any;
+  public convenios: any = [];
+  public conveniosFiltrados: any = [];
+  private _filtroLista: string = '';
+
+  public get filtroLista (){
+    return this._filtroLista;
+  }
+
+  public set filtroLista (value: string) {
+    this._filtroLista = value;
+    this.conveniosFiltrados = this.filtroLista ? this.filtrarConvenios(this.filtroLista) : this.convenios;
+  }
+
+  filtrarConvenios(filtrarPor: string): any {
+    filtrarPor = filtrarPor;
+    return this.convenios.filter(
+      convenio => convenio.processoTCE.indexOf(filtrarPor) !== -1
+    );
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +36,10 @@ export class ConveniosComponent implements OnInit {
 
   public getConvenios(): void {
     this.http.get('https://localhost:5001/api/Convenios').subscribe(
-      response => this.convenios = response,
+      response => {
+        this.convenios = response;
+        this.conveniosFiltrados = this.convenios;
+      },
       error => console.log(error)
     );
   }
