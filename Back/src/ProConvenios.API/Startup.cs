@@ -12,7 +12,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ProConvenios.Application;
+using ProConvenios.Application.Contratos;
 using ProConvenios.Persistence;
+using ProConvenios.Persistence.Contexto;
+using ProConvenios.Persistence.Contratos;
 
 namespace ProConvenios.API
 {
@@ -32,6 +36,12 @@ namespace ProConvenios.API
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
             services.AddControllers();
+
+            services.AddScoped<IConvenioService, ConvenioService>();
+            services.AddScoped<IGeralPersist, GeralPersist>();
+            services.AddScoped<IConvenioPersist, ConvenioPersist>();
+            
+
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

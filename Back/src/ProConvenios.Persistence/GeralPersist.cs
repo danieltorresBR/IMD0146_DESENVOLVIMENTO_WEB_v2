@@ -2,14 +2,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProConvenios.Domain;
+using ProConvenios.Persistence.Contratos;
+using ProConvenios.Persistence.Contexto;
+
+
 
 namespace ProConvenios.Persistence
 {
-    public class ProConveniosPersistence : IProConveniosPersistence
+    public class GeralPersist : IGeralPersist
     {
         private readonly ProConveniosContext _context;
 
-        public ProConveniosPersistence(ProConveniosContext context)
+        public GeralPersist(ProConveniosContext context)
         {
             _context = context;
 
@@ -35,28 +39,6 @@ namespace ProConvenios.Persistence
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync()) > 0;
-        }
-
-        public async Task<Convenio[]> GetAllConvenioByAsync(string dtInicio)
-        {
-            IQueryable<Convenio> query = _context.Convenios;
-
-            return await query.ToArrayAsync();
-        }
-
-        // public async Task<Convenio[]> GetAllConvenioBydtInicioAsync(string dtInicio)
-        // {
-        //     IQueryable<Convenio> query = _context.Convenios;
-
-        //     return await query.ToArrayAsync();
-        // }
-        public async Task<Convenio> GetConvenioByIdAsync(string ConveioId)
-        {
-            IQueryable<Convenio> query = _context.Convenios;
-
-            //query = query.OrderBy(e => e.Id).Where(e => e.Id == ConveioId);
-
-            return await query.FirstOrDefaultAsync();
         }
 
     }

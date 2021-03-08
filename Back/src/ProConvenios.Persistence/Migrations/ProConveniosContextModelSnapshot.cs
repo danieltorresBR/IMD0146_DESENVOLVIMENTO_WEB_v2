@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProConvenios.Persistence;
+using ProConvenios.Persistence.Contexto;
+
 
 namespace ProConvenios.Persistence.Migrations
 {

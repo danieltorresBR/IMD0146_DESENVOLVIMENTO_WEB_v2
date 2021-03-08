@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using ProConvenios.Persistence.Contexto;
+
 
 namespace ProConvenios.Persistence.Migrations
 {

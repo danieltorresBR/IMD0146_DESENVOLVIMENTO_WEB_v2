@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProConvenios.Domain;
 
-namespace ProConvenios.Persistence
+namespace ProConvenios.Persistence.Contexto
 {
     public class ProConveniosContext : DbContext
     {

@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using ProConvenios.Domain;
 
-namespace ProConvenios.Persistence
+namespace ProConvenios.Persistence.Contratos
 {
-    public interface IProConveniosPersistence
+    public interface IGeralPersist
     {
         //GERAL
         void Add<T>(T entity) where T: class;
@@ -12,11 +12,5 @@ namespace ProConvenios.Persistence
         void DeleteRange<T>(T entity) where T: class;
 
         Task<bool> SaveChangesAsync();
-
-        //CONVENIOS
-        //Task<Convenio[]> GetAllConvenioBydtInicioAsync(string dtInicio);
-        Task<Convenio[]> GetAllConvenioByAsync(string dtInicio);
-        Task<Convenio> GetConvenioByIdAsync(string ConveioId);
-        
     }
 }
